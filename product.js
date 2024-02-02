@@ -15,15 +15,6 @@ const app = Vue.createApp({
       pagination: {},
     };
   },
-  mounted() {
-    // 取得 token 來進行驗證
-    const token = document.cookie.replace(
-      /(?:(?:^|.*;\s*)vueWeek3Token\s*\=\s*([^;]*).*$)|^.*$/,
-      "$1"
-    );
-    axios.defaults.headers.common["Authorization"] = token;
-    this.checkLogin();
-  },
   methods: {
     // 驗證 token
     checkLogin() {
@@ -92,7 +83,7 @@ const app = Vue.createApp({
       } else if (type === "delete") {
         // 刪除產品
         // 要知道刪除的是哪一個品項，所以透過 item 取得 id
-        this.tempProduct = { ...item };
+        this.tempProduct = item;
         this.$refs.dModal.openModal();
       }
     },
@@ -121,6 +112,15 @@ const app = Vue.createApp({
     pagination,
     ProductModal,
     DelProductModal,
+  },
+  mounted() {
+    // 取得 token 來進行驗證
+    const token = document.cookie.replace(
+      /(?:(?:^|.*;\s*)vueWeek3Token\s*\=\s*([^;]*).*$)|^.*$/,
+      "$1"
+    );
+    axios.defaults.headers.common["Authorization"] = token;
+    this.checkLogin();
   },
 });
 

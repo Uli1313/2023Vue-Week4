@@ -1,8 +1,9 @@
 export default {
-  props: ["tempProduct", "updateProduct", "createImages"],
+  props: ["tempProduct", "updateProduct", "createImages", "isNew"],
   data() {
     return {
       modalProduct: null,
+      // innerTempProduct: "",
     };
   },
   methods: {
@@ -255,6 +256,10 @@ export default {
       </v-form>
     </div>
   </div>`,
+  // created() {
+  //   this.innerTempProduct = this.tempProduct;
+  //   console.log(this.innerTempProduct, this.tempProduct);
+  // },
   mounted() {
     this.modalProduct = new bootstrap.Modal(this.$refs.productModal);
   },
